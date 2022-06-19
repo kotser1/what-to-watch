@@ -1,5 +1,7 @@
+import Home from '../home/home';
+
 function App(): JSX.Element {
-  return <p>Hello, world!</p>;
+  return <Home />;
 }
 
 export default App;
