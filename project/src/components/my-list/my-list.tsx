@@ -1,4 +1,4 @@
-import Card from '../card/card';
+// import Card from '../card/card';
 
 function MyList() {
   return (
@@ -37,11 +37,11 @@ function MyList() {
         <h2 className='catalog__title visually-hidden'>Catalog</h2>
 
         <div className='catalog__films-list'>
-          {Array(9)
+          {/* {Array(9)
             .fill(0)
             .map((item) => (
               <Card key={item} />
-            ))}
+            ))} */}
         </div>
       </section>
 

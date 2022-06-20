@@ -1,15 +1,18 @@
-import Card from '../card/card';
+import FilmsList from '../films-list/films-list';
+import {Film} from '../../types/films';
 
 type HomePageProps = {
   promoFilmTitle: string;
   promoFilmGenre: string;
   promoFilmReleaseDate: string;
+  films: Film[];
 };
 
 function Home({
   promoFilmTitle,
   promoFilmGenre,
   promoFilmReleaseDate,
+  films
 }: HomePageProps): JSX.Element {
   return (
     <>
@@ -151,13 +154,7 @@ function Home({
             </li>
           </ul>
 
-          <div className='catalog__films-list'>
-            {Array(20)
-              .fill(0)
-              .map((item, index) => (
-                <Card key={item} />
-              ))}
-          </div>
+          <FilmsList films={films} />
 
           <div className='catalog__more'>
             <button className='catalog__button' type='button'>

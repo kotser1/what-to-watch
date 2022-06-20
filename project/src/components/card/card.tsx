@@ -1,18 +1,27 @@
-function Card() {
+import { Link } from 'react-router-dom';
+
+import { Film } from '../../types/films';
+
+type CardProps = {
+  film: Film;
+  onCardHover?: (id: number | null) => void;
+};
+
+function Card({ film, onCardHover}: CardProps): JSX.Element {
+  const { name, previewImage, id } = film;
   return (
-    <article className='small-film-card catalog__films-card'>
+    <article
+      className='small-film-card catalog__films-card'
+      onMouseEnter={() => onCardHover !== undefined ? onCardHover(id) : null}
+      onMouseLeave={() => onCardHover !== undefined ? onCardHover(null) : null}
+    >
       <div className='small-film-card__image'>
-        <img
-          src='img/fantastic-beasts-the-crimes-of-grindelwald.jpg'
-          alt='Fantastic Beasts: The Crimes of Grindelwald'
-          width='280'
-          height='175'
-        />
+        <img src={previewImage} alt={name} width='280' height='175' />
       </div>
       <h3 className='small-film-card__title'>
-        <a className='small-film-card__link' href='film-page.html'>
-          Fantastic Beasts: The Crimes of Grindelwald
-        </a>
+        <Link className='small-film-card__link' to={`/films/${id}`}>
+          {name}
+        </Link>
       </h3>
     </article>
   );
