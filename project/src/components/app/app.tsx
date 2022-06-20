@@ -1,7 +1,19 @@
 import Home from '../home/home';
 
-function App(): JSX.Element {
-  return <Home />;
+type AppProps = {
+  promoTitle: string;
+  promoGenre: string;
+  promoDate: string;
+};
+
+function App({ promoTitle, promoGenre, promoDate }: AppProps): JSX.Element {
+  return (
+    <Home
+      promoFilmTitle={promoTitle}
+      promoFilmGenre={promoGenre}
+      promoFilmReleaseDate={promoDate}
+    />
+  );
 }
 
 export default App;
