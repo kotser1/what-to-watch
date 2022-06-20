@@ -1,6 +1,6 @@
-import Card from '../card/card';
+// import Card from '../card/card';
 
-function Film() {
+function FilmView(): JSX.Element {
   return (
     <>
       <section className='film-card film-card--full'>
@@ -155,9 +155,9 @@ function Film() {
           <h2 className='catalog__title'>More like this</h2>
 
           <div className='catalog__films-list'>
-            {Array(4).map((item) => (
+            {/* {Array(4).map((item) => (
               <Card key={item} />
-            ))}
+            ))} */}
           </div>
         </section>
 
@@ -178,4 +178,4 @@ function Film() {
     </>
   );
 }
-export default Film;
+export default FilmView;

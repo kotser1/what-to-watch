@@ -6,18 +6,20 @@ import { AppRoute, AuthorizationStatus } from '../../const';
 import Login from '../login/login';
 import MyList from '../my-list/my-list';
 import PrivateRoute from '../private-route/private-route';
-import Film from '../film/film';
+import FilmView from '../film-view/film-view';
 import AddReview from '../add-review/add-review';
 import Player from '../player/player';
 import Page404 from '../page-404/page-404';
+import {Film} from '../../types/films';
 
 type AppProps = {
   promoTitle: string;
   promoGenre: string;
   promoDate: string;
+  films: Film[];
 };
 
-function App({ promoTitle, promoGenre, promoDate }: AppProps): JSX.Element {
+function App({ promoTitle, promoGenre, promoDate, films }: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -28,6 +30,7 @@ function App({ promoTitle, promoGenre, promoDate }: AppProps): JSX.Element {
               promoFilmTitle={promoTitle}
               promoFilmGenre={promoGenre}
               promoFilmReleaseDate={promoDate}
+              films={films}
             />
           }
         />
@@ -40,7 +43,7 @@ function App({ promoTitle, promoGenre, promoDate }: AppProps): JSX.Element {
             </PrivateRoute>
           }
         />
-        <Route path={AppRoute.Film} element={<Film />} />
+        <Route path={AppRoute.Film} element={<FilmView />} />
         <Route path={AppRoute.AddReview} element={<AddReview />} />
         <Route path={AppRoute.Player} element={<Player />} />
         <Route path='*' element={<Page404 />} />
