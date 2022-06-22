@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState, MouseEvent } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import cn from 'classnames';
 
 import Header from '../header/header';
@@ -41,6 +41,13 @@ function FilmView({ films, reviews }: FilmViewProps): JSX.Element {
   const tabsNames = ['Overview', 'Details', 'Reviews'];
   const [activeTab, setActiveTab] = useState(tabsNames[0]);
 
+  const navigate = useNavigate();
+
+  const handlePlayButtonClick = (evt: MouseEvent<HTMLButtonElement>) => {
+    evt.preventDefault();
+    navigate(`/player/${currentId}`);
+  };
+
   return (
     <>
       <section className='film-card film-card--full'>
@@ -64,6 +71,7 @@ function FilmView({ films, reviews }: FilmViewProps): JSX.Element {
                 <button
                   className='btn btn--play film-card__button'
                   type='button'
+                  onClick={handlePlayButtonClick}
                 >
                   <svg viewBox='0 0 19 19' width='19' height='19'>
                     <use xlinkHref='#play-s'></use>

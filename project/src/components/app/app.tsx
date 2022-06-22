@@ -49,7 +49,7 @@ function App({ promoTitle, promoGenre, promoDate, films, reviews }: AppProps): J
         />
         <Route path={AppRoute.Film} element={<FilmView films={films} reviews={reviews} />} />
         <Route path={AppRoute.AddReview} element={<AddReview />} />
-        <Route path={AppRoute.Player} element={<Player />} />
+        <Route path={AppRoute.Player} element={<Player films={films} />} />
         <Route path='*' element={<Page404 />} />
       </Routes>
     </BrowserRouter>
