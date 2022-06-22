@@ -1,7 +1,18 @@
-function Player() {
+import {useParams} from 'react-router-dom';
+import { Film } from '../../types/films';
+
+type PlayerProps = {
+  films: Film[];
+}
+
+function Player({films}: PlayerProps): JSX.Element {
+  const params = useParams();
+  const currentId = Number(params.id);
+  const currentFilm = films.filter((item) => item.id === currentId)[0];
+
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+      <video src="#" className="player__video" poster={currentFilm.posterImage}></video>
 
       <button type="button" className="player__exit">Exit</button>
 
@@ -11,7 +22,7 @@ function Player() {
             <progress className="player__progress" value="30" max="100"></progress>
             <div className="player__toggler" style={{left: '30%'}}>Toggler</div>
           </div>
-          <div className="player__time-value">1:30:29</div>
+          <div className="player__time-value">{Math.floor(currentFilm.runTime/60)}:{currentFilm.runTime%60}</div>
         </div>
 
         <div className="player__controls-row">
@@ -21,7 +32,7 @@ function Player() {
             </svg>
             <span>Play</span>
           </button>
-          <div className="player__name">Transpotting</div>
+          <div className="player__name">{currentFilm.name}</div>
 
           <button type="button" className="player__full-screen">
             <svg viewBox="0 0 27 27" width="27" height="27">

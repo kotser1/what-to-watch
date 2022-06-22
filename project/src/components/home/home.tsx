@@ -1,15 +1,20 @@
-import Card from '../card/card';
+import Header from '../header/header';
+import FilmsList from '../films-list/films-list';
+
+import { Film } from '../../types/films';
 
 type HomePageProps = {
   promoFilmTitle: string;
   promoFilmGenre: string;
   promoFilmReleaseDate: string;
+  films: Film[];
 };
 
 function Home({
   promoFilmTitle,
   promoFilmGenre,
   promoFilmReleaseDate,
+  films
 }: HomePageProps): JSX.Element {
   return (
     <>
@@ -22,34 +27,7 @@ function Home({
         </div>
 
         <h1 className='visually-hidden'>WTW</h1>
-
-        <header className='page-header film-card__head'>
-          <div className='logo'>
-            <a className='logo__link' href='/#'>
-              <span className='logo__letter logo__letter--1'>W</span>
-              <span className='logo__letter logo__letter--2'>T</span>
-              <span className='logo__letter logo__letter--3'>W</span>
-            </a>
-          </div>
-
-          <ul className='user-block'>
-            <li className='user-block__item'>
-              <div className='user-block__avatar'>
-                <img
-                  src='img/avatar.jpg'
-                  alt='User avatar'
-                  width='63'
-                  height='63'
-                />
-              </div>
-            </li>
-            <li className='user-block__item'>
-              <a className='user-block__link' href='/#'>
-                Sign out
-              </a>
-            </li>
-          </ul>
-        </header>
+        <Header className='film-card__head'/>
 
         <div className='film-card__wrap'>
           <div className='film-card__info'>
@@ -151,13 +129,7 @@ function Home({
             </li>
           </ul>
 
-          <div className='catalog__films-list'>
-            {Array(20)
-              .fill(0)
-              .map((item, index) => (
-                <Card key={item} />
-              ))}
-          </div>
+          <FilmsList films={films} />
 
           <div className='catalog__more'>
             <button className='catalog__button' type='button'>
