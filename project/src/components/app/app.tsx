@@ -11,15 +11,19 @@ import AddReview from '../add-review/add-review';
 import Player from '../player/player';
 import Page404 from '../page-404/page-404';
 import {Film} from '../../types/films';
+import {Review} from '../../types/reviews';
 
 type AppProps = {
   promoTitle: string;
   promoGenre: string;
   promoDate: string;
   films: Film[];
+  reviews: Review[];
 };
 
-function App({ promoTitle, promoGenre, promoDate, films }: AppProps): JSX.Element {
+function App({ promoTitle, promoGenre, promoDate, films, reviews }: AppProps): JSX.Element {
+  const favoriteFilms = films.filter((item) => item.isFavorite);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -38,12 +42,12 @@ function App({ promoTitle, promoGenre, promoDate, films }: AppProps): JSX.Elemen
         <Route
           path={AppRoute.MyList}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-              <MyList />
+            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+              <MyList favoriteFilms={favoriteFilms} />
             </PrivateRoute>
           }
         />
-        <Route path={AppRoute.Film} element={<FilmView />} />
+        <Route path={AppRoute.Film} element={<FilmView films={films} reviews={reviews} />} />
         <Route path={AppRoute.AddReview} element={<AddReview />} />
         <Route path={AppRoute.Player} element={<Player />} />
         <Route path='*' element={<Page404 />} />
