@@ -1,5 +1,5 @@
 import { useState, MouseEvent } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import cn from 'classnames';
 
 import Header from '../header/header';
@@ -87,9 +87,9 @@ function FilmView({ films, reviews }: FilmViewProps): JSX.Element {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href='add-review.html' className='btn film-card__button'>
+                <Link to={`/films/${currentId}/review`} className='btn film-card__button'>
                   Add review
-                </a>
+                </Link>
               </div>
             </div>
           </div>
